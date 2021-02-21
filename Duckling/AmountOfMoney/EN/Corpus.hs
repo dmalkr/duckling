@@ -269,7 +269,7 @@ allExamples = concat
              , "15.678 BTC"
              , "15.678 Bitcoins"
              , "15.678 BTCUSD"
-             -- , "15.678 bicoin us dollars" -- TODO
+             , "15.678 bitcoin us dollars"
              ]
   , examples (simple XAI 32.54)
              [ "xaiusd 32.54"
@@ -284,7 +284,6 @@ allExamples = concat
              , "12.3456 bat"
              , "12.3456 batusd"
              , "12.3456 bat usd"
-             -- , "12.3456 bat ud $" -- TODO
              ]
   , examples (simple BCH 13.3456)
              [ "BCH 13.3456"

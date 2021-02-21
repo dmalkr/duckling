@@ -150,7 +150,7 @@ ruleCryptocurrencyBitcoin :: Rule
 ruleCryptocurrencyBitcoin = Rule
   { name = "bitcoin cryptocurrency"
   , pattern =
-    [ regex "bitcoins?|btc( ?usd)?"
+    [ regex "bitcoins?( us dollars?)?|btc( ?usd)?"
     ]
   , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly BTC
   }
