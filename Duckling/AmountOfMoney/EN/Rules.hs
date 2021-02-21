@@ -146,6 +146,150 @@ ruleBucks = Rule
   , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly Unnamed
   }
 
+ruleCryptocurrencyBitcoin :: Rule
+ruleCryptocurrencyBitcoin = Rule
+  { name = "bitcoin cryptocurrency"
+  , pattern =
+    [ regex "bitcoins?|btc( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly BTC
+  }
+
+ruleCryptocurrencySapiencecoin :: Rule
+ruleCryptocurrencySapiencecoin = Rule
+  { name = "sapiencecoin cryptocurrency"
+  , pattern =
+    [ regex "xai( ?usd)?|altcoins?( ?index)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly XAI
+  }
+
+ruleCryptocurrencyBasicAttentionToken :: Rule
+ruleCryptocurrencyBasicAttentionToken = Rule
+  { name = "basic attention token cryptocurrency"
+  , pattern =
+    [ regex "bat( ?usd)?|basic attention token"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly BAT
+  }
+
+ruleCryptocurrencyBitcoinCash :: Rule
+ruleCryptocurrencyBitcoinCash = Rule
+  { name = "bitcoin cash cryptocurrency"
+  , pattern =
+    [ regex "bch( ?usd)?|bitcoin( ?cash)"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly BCH
+  }
+
+ruleCryptocurrencyDarkcoin :: Rule
+ruleCryptocurrencyDarkcoin = Rule
+  { name = "darkcoin cryptocurrency"
+  , pattern =
+    [ regex "dash( ?usd)?|darkcoin"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly DASH
+  }
+
+ruleCryptocurrencyEos :: Rule
+ruleCryptocurrencyEos = Rule
+  { name = "EOS cryptocurrency"
+  , pattern =
+    [ regex "eos(\\.io| ?io| ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly EOS
+  }
+
+ruleCryptocurrencyEthereum :: Rule
+ruleCryptocurrencyEthereum = Rule
+  { name = "ethereum cryptocurrency"
+  , pattern =
+    [ regex "ether(ium|eum)?|eth( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly ETH
+  }
+
+ruleCryptocurrencyEthereumClassic :: Rule
+ruleCryptocurrencyEthereumClassic = Rule
+  { name = "ethereum classic cryptocurrency"
+  , pattern =
+    [ regex "ether(ium|eum) classic|etc( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly ETC
+  }
+
+ruleCryptocurrencyIota :: Rule
+ruleCryptocurrencyIota = Rule
+  { name = "IOTA cryptocurrency"
+  , pattern =
+    [ regex "iota?( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly IOTA
+  }
+
+ruleCryptocurrencyLitecoin :: Rule
+ruleCryptocurrencyLitecoin = Rule
+  { name = "litecoin cryptocurrency"
+  , pattern =
+    [ regex "litecoin|ltc( ?usd)?|Ł"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly LTC
+  }
+
+ruleCryptocurrencyMonero :: Rule
+ruleCryptocurrencyMonero = Rule
+  { name = "monero cryptocurrency"
+  , pattern =
+    [ regex "monero|xmr( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly XMR
+  }
+
+ruleCryptocurrencyNeo :: Rule
+ruleCryptocurrencyNeo = Rule
+  { name = "neo cryptocurrency"
+  , pattern =
+    [ regex "neo( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly NEO
+  }
+
+ruleCryptocurrencyOmgNetwork :: Rule
+ruleCryptocurrencyOmgNetwork = Rule
+  { name = "OMG network cryptocurrency"
+  , pattern =
+    [ regex "omisego|omg( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly OMG
+  }
+
+ruleCryptocurrencyRipple :: Rule
+ruleCryptocurrencyRipple = Rule
+  { name = "ripple cryptocurrency"
+  , pattern =
+    [ regex "ripp?le?|ripple|xrp( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly XRP
+  }
+
+ruleCryptocurrencyStellar :: Rule
+ruleCryptocurrencyStellar = Rule
+  { name = "stellar cryptocurrency"
+  , pattern =
+    [ regex "stell?ar( lumen)?|xlm( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly XLM
+  }
+
+ruleCryptocurrencyZcash :: Rule
+ruleCryptocurrencyZcash = Rule
+  { name = "zcash cryptocurrency"
+  , pattern =
+    [ regex "zcash|zec( ?usd)?"
+    ]
+  , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly ZEC
+  }
+
 ruleACurrency :: Rule
 ruleACurrency = Rule
   { name = "a <currency>"
@@ -409,4 +553,20 @@ rules =
   , rulePrecision
   , ruleRinggit
   , ruleRiyals
+  , ruleCryptocurrencyBitcoin
+  , ruleCryptocurrencySapiencecoin
+  , ruleCryptocurrencyBasicAttentionToken
+  , ruleCryptocurrencyBitcoinCash
+  , ruleCryptocurrencyDarkcoin
+  , ruleCryptocurrencyEos
+  , ruleCryptocurrencyEthereum
+  , ruleCryptocurrencyEthereumClassic
+  , ruleCryptocurrencyIota
+  , ruleCryptocurrencyLitecoin
+  , ruleCryptocurrencyMonero
+  , ruleCryptocurrencyNeo
+  , ruleCryptocurrencyOmgNetwork
+  , ruleCryptocurrencyRipple
+  , ruleCryptocurrencyStellar
+  , ruleCryptocurrencyZcash
   ]

@@ -81,6 +81,23 @@ data Currency
   | VND
   | ZAR
   | UAH
+  -- Cryptocurrencies:
+  | BTC
+  | XAI
+  | BAT
+  | BCH
+  | DASH
+  | EOS
+  | ETH
+  | ETC
+  | IOTA
+  | LTC
+  | XMR
+  | NEO
+  | OMG
+  | XRP
+  | XLM
+  | ZEC
   deriving (Eq, Generic, Hashable, Show, Ord, NFData)
 
 instance ToJSON Currency where
@@ -138,6 +155,23 @@ instance ToJSON Currency where
   toJSON VND     = "VND"
   toJSON ZAR     = "ZAR"
   toJSON UAH     = "UAH"
+  -- Cryptocurrencies:
+  toJSON BTC     = "BTC"
+  toJSON XAI     = "XAI"
+  toJSON BAT     = "BAT"
+  toJSON BCH     = "BCH"
+  toJSON DASH    = "DASH"
+  toJSON EOS     = "EOS"
+  toJSON ETH     = "ETH"
+  toJSON ETC     = "ETC"
+  toJSON IOTA    = "IOTA"
+  toJSON LTC     = "LTC"
+  toJSON XMR     = "XMR"
+  toJSON NEO     = "NEO"
+  toJSON OMG     = "OMG"
+  toJSON XRP     = "XRP"
+  toJSON XLM     = "XLM"
+  toJSON ZEC     = "ZEC"
 
 data AmountOfMoneyData = AmountOfMoneyData
   { value    :: Maybe Double
