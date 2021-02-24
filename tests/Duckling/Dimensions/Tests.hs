@@ -14,6 +14,7 @@ import Prelude
 import Test.Tasty
 
 import qualified Duckling.AmountOfMoney.Tests as AmountOfMoney
+import qualified Duckling.AmountOfCryptocurrency.Tests as AmountOfCryptocurrency
 import qualified Duckling.CreditCardNumber.Tests as CreditCardNumber
 import qualified Duckling.Distance.Tests as Distance
 import qualified Duckling.Duration.Tests as Duration
@@ -30,6 +31,7 @@ import qualified Duckling.Url.Tests as Url
 tests :: TestTree
 tests = testGroup "Dimensions Tests"
   [ AmountOfMoney.tests
+  , AmountOfCryptocurrency.tests
   , CreditCardNumber.tests
   , Distance.tests
   , Duration.tests
