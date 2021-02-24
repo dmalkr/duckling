@@ -26,11 +26,8 @@ import qualified Data.HashSet as HashSet
 import qualified TextShow as TS
 import qualified TextShow.Generic as TS
 
-import Duckling.Debug
-import Duckling.Locale
 import Duckling.Numeral.Helpers (isPositive)
 import Duckling.Numeral.Types (NumeralData (..))
-import Duckling.Regex.Types (GroupMatch(..))
 import Duckling.Resolve (Resolve(..))
 import Duckling.Types
 import qualified Duckling.Numeral.Types as TNumeral
@@ -78,10 +75,10 @@ cryptocurrencies =
   ]
 
 
-data CryptocurrencyDimension = CryptocurrencyDimension deriving (Eq, Show, Typeable)
+data AmountOfCryptocurrencyDimension = AmountOfCryptocurrencyDimension deriving (Eq, Show, Typeable)
 
-instance CustomDimension CryptocurrencyDimension where
-  type DimensionData CryptocurrencyDimension = AmountOfCryptocurrencyData
+instance CustomDimension AmountOfCryptocurrencyDimension where
+  type DimensionData AmountOfCryptocurrencyDimension = AmountOfCryptocurrencyData
   dimRules _ = [cryptocurrencyWithAmountPrefixed, cryptocurrencyWithAmountSuffixed] ++ cryptocurrencyNameRules
   dimLangRules _ _ = []
   dimLocaleRules _ _ = []
@@ -122,7 +119,7 @@ cryptocurrencyNameRules =
           { name = "Cryptocurrency " <> TS.showt crypto
           , pattern = [regex re]
           , prod = \case
-              (_:_) -> Just . Token (CustomDimension CryptocurrencyDimension) $ AmountOfCryptocurrencyData
+              (_:_) -> Just . Token (CustomDimension AmountOfCryptocurrencyDimension) $ AmountOfCryptocurrencyData
                          { amount = Nothing
                          , cryptocurrency = crypto
                          }
@@ -134,7 +131,7 @@ cryptocurrencyNameRules =
 
 isCryptocurrencyOnly :: Predicate
 isCryptocurrencyOnly (Token (CustomDimension (dim :: a)) dimData)
-  | Just Refl <- eqT @a @CryptocurrencyDimension, AmountOfCryptocurrencyData{..} <- dimData =
+  | Just Refl <- eqT @a @AmountOfCryptocurrencyDimension, AmountOfCryptocurrencyData{..} <- dimData =
       amount == Nothing
 isCryptocurrencyOnly _ = False
 
@@ -150,8 +147,8 @@ cryptocurrencyWithAmountPrefixed = Rule
       ((Token Numeral NumeralData{TNumeral.value = v}):
        (Token (CustomDimension (dim :: a)) dimData):
        _)
-        | Just Refl <- eqT @a @CryptocurrencyDimension, AmountOfCryptocurrencyData{..} <- dimData ->
-            Just . Token (CustomDimension CryptocurrencyDimension) $ AmountOfCryptocurrencyData
+        | Just Refl <- eqT @a @AmountOfCryptocurrencyDimension, AmountOfCryptocurrencyData{..} <- dimData ->
+            Just . Token (CustomDimension AmountOfCryptocurrencyDimension) $ AmountOfCryptocurrencyData
               { amount = Just v
               , cryptocurrency = cryptocurrency
               }
@@ -170,8 +167,8 @@ cryptocurrencyWithAmountSuffixed = Rule
       ((Token (CustomDimension (dim :: a)) dimData):
        (Token Numeral NumeralData{TNumeral.value = v}):
        _)
-        | Just Refl <- eqT @a @CryptocurrencyDimension, AmountOfCryptocurrencyData{..} <- dimData ->
-            Just . Token (CustomDimension CryptocurrencyDimension) $ AmountOfCryptocurrencyData
+        | Just Refl <- eqT @a @AmountOfCryptocurrencyDimension, AmountOfCryptocurrencyData{..} <- dimData ->
+            Just . Token (CustomDimension AmountOfCryptocurrencyDimension) $ AmountOfCryptocurrencyData
               { amount = Just v
               , cryptocurrency = cryptocurrency
               }
@@ -179,4 +176,4 @@ cryptocurrencyWithAmountSuffixed = Rule
   }
 
 amountOfCryptocurrencyFullDimension :: [Seal Dimension]
-amountOfCryptocurrencyFullDimension = [Seal Numeral, Seal (CustomDimension CryptocurrencyDimension)]
+amountOfCryptocurrencyFullDimension = [Seal Numeral, Seal (CustomDimension AmountOfCryptocurrencyDimension)]
