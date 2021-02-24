@@ -1,9 +1,3 @@
--- Copyright (c) 2016-present, Facebook, Inc.
--- All rights reserved.
---
--- This source code is licensed under the BSD-style license found in the
--- LICENSE file in the root directory of this source tree.
-
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveGeneric #-}
@@ -88,7 +82,7 @@ data CryptocurrencyDimension = CryptocurrencyDimension deriving (Eq, Show, Typea
 
 instance CustomDimension CryptocurrencyDimension where
   type DimensionData CryptocurrencyDimension = AmountOfCryptocurrencyData
-  dimRules _ = [cryptocurrencyWithAmountPrefixed] ++ cryptocurrencyNameRules
+  dimRules _ = [cryptocurrencyWithAmountPrefixed, cryptocurrencyWithAmountSuffixed] ++ cryptocurrencyNameRules
   dimLangRules _ _ = []
   dimLocaleRules _ _ = []
   dimDependents _ = HashSet.empty
@@ -164,3 +158,25 @@ cryptocurrencyWithAmountPrefixed = Rule
       _ -> Nothing
   }
 
+
+cryptocurrencyWithAmountSuffixed :: Rule
+cryptocurrencyWithAmountSuffixed = Rule
+  { name = "Cryptocurrency with amount (suffixed)"
+  , pattern =
+    [ Predicate isCryptocurrencyOnly
+    , Predicate isPositive
+    ]
+  , prod = \case
+      ((Token (CustomDimension (dim :: a)) dimData):
+       (Token Numeral NumeralData{TNumeral.value = v}):
+       _)
+        | Just Refl <- eqT @a @CryptocurrencyDimension, AmountOfCryptocurrencyData{..} <- dimData ->
+            Just . Token (CustomDimension CryptocurrencyDimension) $ AmountOfCryptocurrencyData
+              { amount = Just v
+              , cryptocurrency = cryptocurrency
+              }
+      _ -> Nothing
+  }
+
+amountOfCryptocurrencyFullDimension :: [Seal Dimension]
+amountOfCryptocurrencyFullDimension = [Seal Numeral, Seal (CustomDimension CryptocurrencyDimension)]

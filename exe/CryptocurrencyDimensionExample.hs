@@ -12,4 +12,4 @@ import Duckling.AmountOfCryptocurrency.AmountOfCryptocurrency
 main :: IO ()
 main = do
   let en = makeLocale EN Nothing
-  debug en "testing 10 bitcoin my dimension" [Seal Numeral, Seal (CustomDimension CryptocurrencyDimension)] >>= pPrint
+  debug en "10 bitcoin" amountOfCryptocurrencyFullDimension >>= pPrint

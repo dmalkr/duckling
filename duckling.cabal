@@ -288,6 +288,7 @@ library
 
                      -- AmountOfCryptocurrency
                      , Duckling.AmountOfCryptocurrency.AmountOfCryptocurrency
+                     , Duckling.AmountOfCryptocurrency.Corpus
 
                      -- Distance
                      , Duckling.Distance.BG.Corpus
@@ -920,7 +921,7 @@ test-suite duckling-test
                      , Duckling.AmountOfMoney.Tests
 
                      -- AmountOfCryptocurrency
-                     , Duckling.AmountOfCryptocurrency.AmountOfCryptocurrency
+                     , Duckling.AmountOfCryptocurrency.Tests
 
                      -- Distance
                      , Duckling.Distance.BG.Tests
