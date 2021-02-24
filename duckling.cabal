@@ -286,6 +286,9 @@ library
                      , Duckling.AmountOfMoney.Rules
                      , Duckling.AmountOfMoney.Types
 
+                     -- AmountOfCryptocurrency
+                     , Duckling.AmountOfCryptocurrency.AmountOfCryptocurrency
+
                      -- Distance
                      , Duckling.Distance.BG.Corpus
                      , Duckling.Distance.BG.Rules
@@ -915,6 +918,9 @@ test-suite duckling-test
                      , Duckling.AmountOfMoney.NL.Tests
                      , Duckling.AmountOfMoney.ZH.Tests
                      , Duckling.AmountOfMoney.Tests
+
+                     -- AmountOfCryptocurrency
+                     , Duckling.AmountOfCryptocurrency.AmountOfCryptocurrency
 
                      -- Distance
                      , Duckling.Distance.BG.Tests
